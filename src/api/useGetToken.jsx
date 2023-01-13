@@ -10,9 +10,8 @@ const spotify = {
 }
 
 const useGetToken = () => { 
-    console.log(process.env.REACT.CLIENTID)
+  
     const dispatch = useDispatch();
-
 
     useEffect(() => {
 
@@ -20,7 +19,7 @@ const useGetToken = () => {
         axios('https://accounts.spotify.com/api/token', {
         headers: {
             'Content-Type' : 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic ' + btoa(spotify.ClientId + ':' + spotify.ClientSecret)      
+            'Authorization' : 'Basic ' + btoa(import.meta.env.VITE_CLIENTID + ':' + import.meta.env.VITE_CLIENTSECRET)      
             },
             data: 'grant_type=client_credentials',
             method: 'POST'
