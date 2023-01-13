@@ -30,8 +30,6 @@ const Header = () => {
 
     }, [location.pathname])
 
-    // @/ nothing is loading
-    // @/ text input could have something 
 
     return( 
         <>

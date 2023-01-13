@@ -15,36 +15,43 @@ const useSearchArts = (artist) => {
     const searchValue = useSelector((state) => state.cart.searchValue);
     const textInput = useSelector((state) => state.cart.textInput);
     const token = useSelector((state) => state.cart.token);
+    let url;
 
-    useEffect(() => {
-        dispatch(artsActions.setIsLoading(true))
-        setIsError(false)
-        setError({})
+    function getArists () {
+        let url = `https://api.spotify.com/v1/search?q=${textInput? textInput : artist}&type=artist&limit=3`;
+
+        //if(albumSearch)
+        //url = `https://api.spotify.com/v1/artists/${id}/albums?offset=0&limit=5`
 
         const controller = new AbortController();
         const { signal } = controller;
 
-        function callGitHub () {
+        dispatch(artsActions.setIsLoading(true))
+        setIsError(false)
+        setError({})
 
         console.log(searchValue)
-        axios(`https://api.spotify.com/v1/search?q=${textInput? textInput : artist}&type=artist&limit=3`, 
-        { method: 'GET', headers: { 'Authorization' : 'Bearer ' + token}})
+        axios(url, { method: 'GET', headers: { 'Authorization' : 'Bearer ' + token}})
         .then(data => { 
 
+            //!albumSearch : dispatch(artsActions.setSearchArray(data.data.artists.items)) ? dispatch(artsActions.setAlbumArray(data.data.artists.items))   
             dispatch(artsActions.setSearchArray(data.data.artists.items))
+
+
             dispatch(artsActions.setIsLoading(false))
             dispatch(artsActions.setIsError(false))
         })
         .catch((err)=> {
             console.log(err)
             dispatch(artsActions.setIsLoading(false))
-            //signal.aborted happens when controller.abort() gets called
-            //by the user therefore do not need to return the err msg
+
             if(signal.aborted) return;
             dispatch(artsActions.setIsError(true))
             dispatch(artsActions.setError({ message: err.message }))
         })
     }
+
+    useEffect(() => {
 
         const timeOutId = setTimeout(() => {
             if(!textInput) {
@@ -55,18 +62,12 @@ const useSearchArts = (artist) => {
             dispatch(artsActions.setIsError(false))  
 
             } else {    
-            callGitHub()
-            //navigate(`artist/${textInput}`);
+            getArists()
             navigate(`artist?artistname=${textInput}`);  
-            }
-
-        }
-        , 1000);
-
+            }}, 1000);
 
         return () => { 
             console.log('comp unmount')
-
             clearTimeout(timeOutId);}    
 
     }, [textInput])
