@@ -4,7 +4,7 @@ import useSearchArts from "./api/useSearchArts";
 import useGetToken from "./api/useGetToken";
 
 import Header from "./Pages/layouts/Header"
-import Repo from "./Pages/Welcome";
+import Artist from "./Pages/Artist";
 
 function App() {
   useGetToken()
@@ -13,15 +13,8 @@ function App() {
 return (
   <Routes>
     <Route path='/' element={<Header></Header>}>
-
-    {/* <Route path='/artist/:artistName' element={<Repo></Repo>} ></Route> */}
-
-    <Route path='/artist' element={<Repo></Repo>} >
-      
+    <Route path='/artist' element={<Artist></Artist>}></Route>
     </Route>
-
-    </Route>
-
   </Routes>
 ) 
 }

@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { artsActions } from "../store/store";
 import { useNavigate } from "react-router-dom";
 
-const useSearchArts = () => {
+
+const useSearchArts = (artist) => {
 
     const navigate = useNavigate()
     const [isError, setIsError] = useState(false)
@@ -26,7 +27,7 @@ const useSearchArts = () => {
         function callGitHub () {
 
         console.log(searchValue)
-        axios(`https://api.spotify.com/v1/search?q=${textInput}&type=artist&limit=3`, 
+        axios(`https://api.spotify.com/v1/search?q=${textInput? textInput : artist}&type=artist&limit=3`, 
         { method: 'GET', headers: { 'Authorization' : 'Bearer ' + token}})
         .then(data => { 
 

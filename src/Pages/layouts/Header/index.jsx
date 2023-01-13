@@ -23,12 +23,15 @@ const Header = () => {
 
 
     useEffect(() => {
-      if(textInput === '') 
-      {
-        console.log('cleanup')
-        navigate('/')
-    }
+
     }, [textInput])
+
+    useEffect(() => {
+
+    }, [location.pathname])
+
+    // @/ nothing is loading
+    // @/ text input could have something 
 
     return( 
         <>

@@ -3,12 +3,15 @@ import { useParams, useSearchParams ,useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { artsActions } from "../../store/store";
 
-const Repo = (data) => {
+import useSearchArts from "../../api/useSearchArts";
+import useGetAlbums from "../../api/useGetAlbums";
+
+const Artist = (data) => {
+    const { getAlbums } = useGetAlbums();
     const dispatch = useDispatch();
-    const location = useLocation();
     const params = useParams();
+    const location = useLocation();
     let param = new URLSearchParams(location.search);
-    let [searchParams, setSearchParams] = useSearchParams();
 
     const isLoading = useSelector((state) => state.cart.isLoading);
     const isError = useSelector((state) => state.cart.isError);
@@ -19,12 +22,14 @@ const Repo = (data) => {
 
     console.log(params)
     console.log(param.get("artistname"))
-    console.log(location)
+    console.log(location) 
 
-    let artistComponents = searchArray.map((repo, i) => {
-
+    let artistComponents = searchArray.map((artist, i) => {
+        console.log(artist)
         return <div key={i} >
-            <h2>{repo.name}</h2>
+        <img src={`${artist.images[1].url}`}></img>
+            <h2>{artist.name}</h2>
+            <button onClick={() => getAlbums(artist.id)} >{artist.id}</button>
         </div>
      })
 
@@ -32,16 +37,21 @@ const Repo = (data) => {
 
     let displayError =  <>
     <h1>error message:</h1>
-    <p>{error.message}</p>
+    <p>{error.message}</p>  
     <p>put in the right user name</p>
   </>
+
 
   useEffect(() => {
 
 if(param.get("artistname")) {
     console.log('con')
     dispatch(artsActions.setTextInput(param.get("artistname")))
-    }
+}
+
+  return () => {
+    dispatch(artsActions.setTextInput(''))
+  }
 
   }, [param.get("artistname")])
 
@@ -54,4 +64,4 @@ if(param.get("artistname")) {
     )
 }
 
-export default Repo
+export default Artist

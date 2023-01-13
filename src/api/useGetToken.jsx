@@ -4,11 +4,6 @@ import { artsActions } from '../store/store';
 import useSearchArts from './useSearchArts';
 import axios from 'axios';
 
-const spotify = {
-    ClientId: `df30ea0733bf439bab48367864236b8f`,
-    ClientSecret: `2291827d42d842939b4822bacd0c574d`
-}
-
 const useGetToken = () => { 
   
     const dispatch = useDispatch();
