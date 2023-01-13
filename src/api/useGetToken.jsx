@@ -10,6 +10,7 @@ const spotify = {
 }
 
 const useGetToken = () => { 
+    console.log(process.env.REACT.CLIENTID)
     const dispatch = useDispatch();
 
 
