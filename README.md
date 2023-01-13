@@ -1,4 +1,4 @@
-# Assignment title
+# Project title
 - Spotify api react application
 
 ## Installation & usage
