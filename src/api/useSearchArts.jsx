@@ -47,10 +47,16 @@ const useSearchArts = (artist) => {
             //store data in redux
             artistId ? dispatch(artsActions.setAlbumArray(data.data.items)) : dispatch(artsActions.setSearchArray(data.data.artists.items))
 
-            navigate(`artist?artistname=${textInput}`)
+            // if(!param.get("artistname")) navigate(`artist?artistname=${textInput}`) 
+            // else return;
+
+            if(textInput !== param.get("artistname")) navigate(`artist?artistname=${textInput}`)
 
             //handle routing
 
+            if(artistId) {
+                navigate(`${location.pathname}${location.search}&album=${artistId}`)
+            }  
         })
         .catch((err)=> {
             console.log(err)
@@ -75,8 +81,10 @@ const useSearchArts = (artist) => {
             } else {
 
             console.log(location)
-            getArists() 
-
+            //console.log(window.location)
+            if(textInput) getArists() 
+            else return;   
+            //getArists() 
         
             }}, 1000);
 

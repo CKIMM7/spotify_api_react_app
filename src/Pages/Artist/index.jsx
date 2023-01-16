@@ -7,7 +7,7 @@ import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
-    //const { getArists } = useSearchArts();;
+    //const { getArists } = useSearchArts();
     const dispatch = useDispatch();
     const params = useParams();
     const location = useLocation();
@@ -69,3 +69,4 @@ if(param.get("artistname")) {
 }
 
 export default Artist
+
