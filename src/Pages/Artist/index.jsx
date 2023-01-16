@@ -1,5 +1,5 @@
 import React , { useEffect } from "react";
-import { useParams, useSearchParams, useLocation } from 'react-router-dom'
+import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { artsActions } from "../../store/store";
 
@@ -7,7 +7,7 @@ import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
-    //const { getArists } = useSearchArts('nothing');
+    const navigate = useNavigate()
     const { getAlbums } = useGetAlbums()
     const dispatch = useDispatch();
     const location = useLocation();
@@ -26,14 +26,23 @@ const Artist = (data) => {
     const textInput = useSelector((state) => state.cart.textInput);
 
     const modalState = useSelector((state) => state.cart.modal);
-
+    const toggle = useSelector((state) => state.cart.toggle);
 
     let artistComponents = searchArray.map((artist, i) => {
 
         return <div key={i} >
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
-            <button onClick={() => {getAlbums(artist.id)}}>{artist.id}</button>
+            <button onClick={
+              () => {
+                dispatch(artsActions.setToggle(true))
+                getAlbums(artist.id)
+                dispatch(artsActions.setToggle(false))
+                navigate(`/artist?artistname=${textInput}&album=${artist.id}`)
+ 
+
+
+            }}>{artist.id}</button>
         </div>
      })
 
@@ -49,7 +58,8 @@ const Artist = (data) => {
   useEffect(() => {
 
 if(param.get("artistname")) {
-    console.log('con')
+    // console.log(param.get("artistname"))
+    // console.log(document.referrer)
     dispatch(artsActions.setTextInput(param.get("artistname")))
 
 }
@@ -60,16 +70,20 @@ if(param.get("artistname")) {
 
   }, [param.get("artistname")])
 
-  //happens when artistname changes
-
   useEffect(() => {
     console.log(params.album)
     if(params.album) {
       console.log('album query is there')
-      dispatch(artsActions.setModal(true))
+
+      dispatch(artsActions.setToggle(true))
+      getAlbums(params.album, params.artistname)
+      dispatch(artsActions.setToggle(false))
+
+      
     }
+
     
-  }, [])
+  }, [param.get("album")])
 
 
     return(

@@ -10,38 +10,44 @@ import axios from "axios"
     const dispatch = useDispatch();
     const token = useSelector((state) => state.cart.token);
     const textInput = useSelector((state) => state.cart.textInput);
+    const toggle = useSelector((state) => state.cart.toggle);
 
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop),
     });
-    let album = params.album;
+    let id = params.artistname;
 
-    const getAlbums = (id, artistName) => {
+    const getAlbums = (id) => {
   
       let url = `https://api.spotify.com/v1/artists/${id}/albums?offset=0&limit=5`
-    
-      axios(url, {
+      
+      if(id) axios(url, {
           method: 'GET',
           headers: { 'Authorization' : 'Bearer ' + token}
         })
         .then (albums => {
+          console.log(albums)
           dispatch(artsActions.setAlbumArray(albums.data.items))
-          dispatch(artsActions.setModal(true))
 
-          navigate(`/artist?artistname=${textInput ? textInput : artistName}&album=${id}`)
+          // navigate(`/artist?artistname=${textInput ? textInput : artistName}&album=${id}`)
 
-
-
+          console.log('how many navigate')
 
         })
         .catch(err => {
           console.log(err)
-        })     
+        })
+
+      
     }
 
     useEffect(() => {
+      console.log(toggle)
+      if(toggle) getAlbums()
+      
+      getAlbums()
 
-    }, [])
+    }, [toggle])
 
 
     return { getAlbums };

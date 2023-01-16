@@ -41,15 +41,11 @@ const useSearchArts = (nothing) => {
 
             //store data in redux
             dispatch(artsActions.setSearchArray(data.data.artists.items))
-
+                
 
             if(textInput !== param.get("artistname")) navigate(`artist?artistname=${textInput}`)
 
             //handle routing
-
-            if(artistId) {
-                navigate(`${location.pathname}${location.search}&album=${artistId}`)
-            }  
         })
         .catch((err)=> {
             console.log(err)

@@ -13,9 +13,15 @@ const artsSlice = createSlice({
       isLoading: false,
       isError: false,
       error: {},
-      modal: false
+      modal: false,
+      toggle: false
   },
   reducers: {
+
+    setToggle(state, action) {
+      console.log(action.payload)
+      state.toggle = action.payload;
+    },
 
     setModal(state, action) {
       console.log(action.payload)
