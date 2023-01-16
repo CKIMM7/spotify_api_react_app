@@ -9,11 +9,17 @@ const artsSlice = createSlice({
       searchValue: '',
       textInput: '' ,
       searchArray: [],
+      AlbumArray: [],
       isLoading: false,
       isError: false,
       error: {}
   },
   reducers: {
+
+    setAlbumArray(state, action) {
+      console.log(action.payload)
+      state.AlbumArray = action.payload;
+    },
 
     setToken(state, action) {
       console.log(action.payload)

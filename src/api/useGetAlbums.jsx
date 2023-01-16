@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
           headers: { 'Authorization' : 'Bearer ' + token}
         })
         .then (albums => {
+          console.log('albums.jsx')
           console.log(albums.data.items);
         })
         .catch(err => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux';
 import { artsActions } from "../store/store";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const useSearchArts = (artist) => {
@@ -11,17 +11,21 @@ const useSearchArts = (artist) => {
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState({})
     const dispatch = useDispatch()
+    const location = useLocation();
 
     const searchValue = useSelector((state) => state.cart.searchValue);
     const textInput = useSelector((state) => state.cart.textInput);
     const token = useSelector((state) => state.cart.token);
     let url;
 
-    function getArists () {
+    const getArists = (artistId) => {
         let url = `https://api.spotify.com/v1/search?q=${textInput? textInput : artist}&type=artist&limit=3`;
 
-        //if(albumSearch)
-        //url = `https://api.spotify.com/v1/artists/${id}/albums?offset=0&limit=5`
+        if(artistId)
+        url = `https://api.spotify.com/v1/artists/${artistId}/albums?offset=0&limit=5`
+
+        console.log(`artistId`)
+        console.log(artistId)
 
         const controller = new AbortController();
         const { signal } = controller;
@@ -34,12 +38,15 @@ const useSearchArts = (artist) => {
         axios(url, { method: 'GET', headers: { 'Authorization' : 'Bearer ' + token}})
         .then(data => { 
 
-            //!albumSearch : dispatch(artsActions.setSearchArray(data.data.artists.items)) ? dispatch(artsActions.setAlbumArray(data.data.artists.items))   
-            dispatch(artsActions.setSearchArray(data.data.artists.items))
-
+            artistId ? dispatch(artsActions.setAlbumArray(data.data.items))   : dispatch(artsActions.setSearchArray(data.data.artists.items))  
+            // dispatch(artsActions.setSearchArray(data.data.artists.items))
 
             dispatch(artsActions.setIsLoading(false))
             dispatch(artsActions.setIsError(false))
+
+            artistId ? console.log('do something') : navigate(`artist?artistname=${textInput}`)
+
+            
         })
         .catch((err)=> {
             console.log(err)
@@ -61,9 +68,12 @@ const useSearchArts = (artist) => {
             dispatch(artsActions.setIsLoading(false))
             dispatch(artsActions.setIsError(false))  
 
-            } else {    
-            getArists()
-            navigate(`artist?artistname=${textInput}`);  
+            } else {
+
+            console.log(location)
+            if(location.search) return; else getArists()
+        
+        
             }}, 1000);
 
         return () => { 
@@ -72,7 +82,7 @@ const useSearchArts = (artist) => {
 
     }, [textInput])
 
-    return { isError, error, searchValue };
+    return { isError, error, searchValue, getArists };
 }
 
 export default useSearchArts;

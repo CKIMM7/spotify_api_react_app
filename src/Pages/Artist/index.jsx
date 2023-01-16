@@ -1,5 +1,5 @@
 import React , { useEffect } from "react";
-import { useParams, useSearchParams ,useLocation } from 'react-router-dom'
+import { useParams, useSearchParams, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { artsActions } from "../../store/store";
 
@@ -8,6 +8,7 @@ import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
     const { getAlbums } = useGetAlbums();
+    const { getArists } = useSearchArts();
     const dispatch = useDispatch();
     const params = useParams();
     const location = useLocation();
@@ -22,14 +23,14 @@ const Artist = (data) => {
 
     console.log(params)
     console.log(param.get("artistname"))
-    console.log(location) 
+
 
     let artistComponents = searchArray.map((artist, i) => {
-        console.log(artist)
+
         return <div key={i} >
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
-            <button onClick={() => getAlbums(artist.id)} >{artist.id}</button>
+            <button onClick={() => getArists(artist.id)} >{artist.id}</button>
         </div>
      })
 
