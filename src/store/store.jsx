@@ -12,10 +12,16 @@ const artsSlice = createSlice({
       albumArray: [],
       isLoading: false,
       isError: false,
-      error: {}
+      error: {},
+      modal: false
   },
   reducers: {
 
+    setModal(state, action) {
+      console.log(action.payload)
+      state.modal = action.payload;
+    },
+    
     setAlbumArray(state, action) {
       console.log(action.payload)
       state.albumArray = action.payload;

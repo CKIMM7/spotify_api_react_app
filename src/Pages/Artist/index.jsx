@@ -10,10 +10,12 @@ const Artist = (data) => {
     //const { getArists } = useSearchArts('nothing');
     const { getAlbums } = useGetAlbums()
     const dispatch = useDispatch();
-    const params = useParams();
     const location = useLocation();
     let param = new URLSearchParams(location.search);
 
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop),
+    });
 
     const isLoading = useSelector((state) => state.cart.isLoading);
     const isError = useSelector((state) => state.cart.isError);
@@ -22,6 +24,8 @@ const Artist = (data) => {
     const searchArray = useSelector(state => state.cart.searchArray)
     const albumArray = useSelector(state => state.cart.albumArray)
     const textInput = useSelector((state) => state.cart.textInput);
+
+    const modalState = useSelector((state) => state.cart.modal);
 
 
     let artistComponents = searchArray.map((artist, i) => {
@@ -47,6 +51,7 @@ const Artist = (data) => {
 if(param.get("artistname")) {
     console.log('con')
     dispatch(artsActions.setTextInput(param.get("artistname")))
+
 }
 
   return () => {
@@ -55,17 +60,27 @@ if(param.get("artistname")) {
 
   }, [param.get("artistname")])
 
+  //happens when artistname changes
+
+  useEffect(() => {
+    console.log(params.album)
+    if(params.album) {
+      console.log('album query is there')
+      dispatch(artsActions.setModal(true))
+    }
+    
+  }, [])
+
+
     return(
     <div>
-        {/* <h1 id="repo-container">{data.data.name}</h1> */}
         {!isError && content}
+        {modalState && <h1>Modal</h1>}
         {isError && displayError}
-        
+
     </div>
     )
 }
 
 export default Artist
 
-//onClick={() => {getArists(artist.id)}}
-//const { getArists } = useSearchArts('nothing');
