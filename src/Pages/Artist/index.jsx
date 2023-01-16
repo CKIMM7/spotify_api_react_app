@@ -60,6 +60,7 @@ if(param.get("artistname")) {
         {/* <h1 id="repo-container">{data.data.name}</h1> */}
         {!isError && content}
         {isError && displayError}
+        
     </div>
     )
 }

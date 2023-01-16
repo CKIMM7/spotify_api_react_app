@@ -1,13 +1,15 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { artsActions } from "../store/store";
 import axios from "axios"
 
-  const useGetAlbums = () => { 
+  const useGetAlbums = () => {
+    const location = useLocation(); 
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const token = useSelector((state) => state.cart.token);
+    const textInput = useSelector((state) => state.cart.textInput);
 
     const getAlbums = (id) => {
       console.log('get albumbs')
@@ -19,11 +21,12 @@ import axios from "axios"
           headers: { 'Authorization' : 'Bearer ' + token}
         })
         .then (albums => {
-          console.log('albums.jsx')
-          console.log(albums);
           dispatch(artsActions.setAlbumArray(albums.data.items))
           
-          navigate(`${location.pathname}${location.search}&album=${id}`)
+          //navigate(`${location.pathname}${location.search}&album=${id}`)
+          navigate(`/artist?artistname=${textInput}&album=${id}`)
+          console.log(location)
+
         })
         .catch(err => {
           console.log(err)
