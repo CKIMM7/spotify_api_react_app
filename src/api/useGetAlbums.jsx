@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { artsActions } from "../store/store";
+import axios from "axios"
 
   const useGetAlbums = () => { 
-  
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const token = useSelector((state) => state.cart.token);
 
@@ -18,7 +20,10 @@ import { useDispatch, useSelector } from "react-redux";
         })
         .then (albums => {
           console.log('albums.jsx')
-          console.log(albums.data.items);
+          console.log(albums);
+          dispatch(artsActions.setAlbumArray(albums.data.items))
+          
+          navigate(`${location.pathname}${location.search}&album=${id}`)
         })
         .catch(err => {
           console.log(err)

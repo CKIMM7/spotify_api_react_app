@@ -7,7 +7,8 @@ import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
-    const { getArists } = useSearchArts('nothing');
+    //const { getArists } = useSearchArts('nothing');
+    const { getAlbums } = useGetAlbums()
     const dispatch = useDispatch();
     const params = useParams();
     const location = useLocation();
@@ -22,16 +23,13 @@ const Artist = (data) => {
     const albumArray = useSelector(state => state.cart.albumArray)
     const textInput = useSelector((state) => state.cart.textInput);
 
-    console.log(params)
-    console.log(param.get("artistname"))
-
 
     let artistComponents = searchArray.map((artist, i) => {
 
         return <div key={i} >
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
-            <button onClick={() => {getArists(artist.id)}} >{artist.id}</button>
+            <button onClick={() => {getAlbums(artist.id)}}>{artist.id}</button>
         </div>
      })
 
@@ -68,3 +66,5 @@ if(param.get("artistname")) {
 
 export default Artist
 
+//onClick={() => {getArists(artist.id)}}
+//const { getArists } = useSearchArts('nothing');

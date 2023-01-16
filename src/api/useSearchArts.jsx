@@ -4,12 +4,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { artsActions } from "../store/store";
 
-const useSearchArts = (artist) => {
-    console.log(artist)
-    const navigate = useNavigate()
-    const [isError, setIsError] = useState(false)
-    const [error, setError] = useState({})
-    const dispatch = useDispatch()
+const useSearchArts = (nothing) => {
+    console.log(nothing);
+    const navigate = useNavigate();
+    const [isError, setIsError] = useState(false);
+    const [error, setError] = useState({});
+    const dispatch = useDispatch();
     const location = useLocation();
 
     const searchValue = useSelector((state) => state.cart.searchValue);
@@ -24,15 +24,10 @@ const useSearchArts = (artist) => {
         setIsError(false)
         setError({})
 
-        console.log(textInput)
-
-        let url = `https://api.spotify.com/v1/search?q=${textInput? textInput : artist}&type=artist&limit=3`;
+        let url = `https://api.spotify.com/v1/search?q=${textInput}&type=artist&limit=3`;
 
         if(artistId)
         url = `https://api.spotify.com/v1/artists/${artistId}/albums?offset=0&limit=5`
-
-        console.log(`artistId`)
-        console.log(artistId)
 
         const controller = new AbortController();
         const { signal } = controller;
@@ -45,7 +40,7 @@ const useSearchArts = (artist) => {
             dispatch(artsActions.setIsError(false))
 
             //store data in redux
-            artistId ? dispatch(artsActions.setAlbumArray(data.data.items)) : dispatch(artsActions.setSearchArray(data.data.artists.items))
+            dispatch(artsActions.setSearchArray(data.data.artists.items))
 
 
             if(textInput !== param.get("artistname")) navigate(`artist?artistname=${textInput}`)
@@ -79,10 +74,8 @@ const useSearchArts = (artist) => {
             } else {
 
             console.log(location)
-            //console.log(window.location)
-            if(textInput) getArists() 
-            else return;   
-            //getArists() 
+            getArists() 
+
         
             }}, 1000);
 
