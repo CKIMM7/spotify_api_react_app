@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { artsActions } from "../store/store";
 
 const useSearchArts = (artist) => {
-
+    console.log(artist)
     const navigate = useNavigate()
     const [isError, setIsError] = useState(false)
     const [error, setError] = useState({})
@@ -47,8 +47,6 @@ const useSearchArts = (artist) => {
             //store data in redux
             artistId ? dispatch(artsActions.setAlbumArray(data.data.items)) : dispatch(artsActions.setSearchArray(data.data.artists.items))
 
-            // if(!param.get("artistname")) navigate(`artist?artistname=${textInput}`) 
-            // else return;
 
             if(textInput !== param.get("artistname")) navigate(`artist?artistname=${textInput}`)
 
@@ -97,4 +95,4 @@ const useSearchArts = (artist) => {
     return { isError, error, searchValue, getArists };
 }
 
-export default useSearchArts;
+export default useSearchArts

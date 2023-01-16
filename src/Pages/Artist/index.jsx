@@ -7,7 +7,7 @@ import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
-    //const { getArists } = useSearchArts();
+    const { getArists } = useSearchArts('nothing');
     const dispatch = useDispatch();
     const params = useParams();
     const location = useLocation();
@@ -31,11 +31,9 @@ const Artist = (data) => {
         return <div key={i} >
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
-            <button >{artist.id}</button>
+            <button onClick={() => {getArists(artist.id)}} >{artist.id}</button>
         </div>
      })
-
-
 
     let content = searchArray.length === 0 && textInput && !isLoading ? <h1>no repos for this user</h1> :  artistComponents
 
