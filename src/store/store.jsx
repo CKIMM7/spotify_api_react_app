@@ -9,7 +9,7 @@ const artsSlice = createSlice({
       searchValue: '',
       textInput: '' ,
       searchArray: [],
-      AlbumArray: [],
+      albumArray: [],
       isLoading: false,
       isError: false,
       error: {}
@@ -18,7 +18,7 @@ const artsSlice = createSlice({
 
     setAlbumArray(state, action) {
       console.log(action.payload)
-      state.AlbumArray = action.payload;
+      state.albumArray = action.payload;
     },
 
     setToken(state, action) {

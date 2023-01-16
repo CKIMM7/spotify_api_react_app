@@ -7,18 +7,19 @@ import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
 const Artist = (data) => {
-    const { getAlbums } = useGetAlbums();
-    const { getArists } = useSearchArts();
+    //const { getArists } = useSearchArts();
     const dispatch = useDispatch();
     const params = useParams();
     const location = useLocation();
     let param = new URLSearchParams(location.search);
+
 
     const isLoading = useSelector((state) => state.cart.isLoading);
     const isError = useSelector((state) => state.cart.isError);
     const error = useSelector((state) => state.cart.error);
     
     const searchArray = useSelector(state => state.cart.searchArray)
+    const albumArray = useSelector(state => state.cart.albumArray)
     const textInput = useSelector((state) => state.cart.textInput);
 
     console.log(params)
@@ -30,9 +31,11 @@ const Artist = (data) => {
         return <div key={i} >
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
-            <button onClick={() => getArists(artist.id)} >{artist.id}</button>
+            <button >{artist.id}</button>
         </div>
      })
+
+
 
     let content = searchArray.length === 0 && textInput && !isLoading ? <h1>no repos for this user</h1> :  artistComponents
 
