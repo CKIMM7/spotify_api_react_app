@@ -29,7 +29,6 @@ import axios from "axios"
           console.log(albums)
           dispatch(artsActions.setAlbumArray(albums.data.items))
 
-          // navigate(`/artist?artistname=${textInput ? textInput : artistName}&album=${id}`)
 
           console.log('how many navigate')
 

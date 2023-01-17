@@ -6,6 +6,8 @@ import { artsActions } from "../../store/store";
 import useSearchArts from "../../api/useSearchArts";
 import useGetAlbums from "../../api/useGetAlbums";
 
+import Modal from "../Modal";
+
 const Artist = (data) => {
     const navigate = useNavigate()
     const { getAlbums } = useGetAlbums()
@@ -36,6 +38,7 @@ const Artist = (data) => {
             <button onClick={
               () => {
                 dispatch(artsActions.setToggle(true))
+                dispatch(artsActions.setModal(true))
                 getAlbums(artist.id)
                 dispatch(artsActions.setToggle(false))
                 navigate(`/artist?artistname=${textInput}&album=${artist.id}`)
@@ -69,15 +72,15 @@ if(param.get("artistname")) {
   }
 
   }, [param.get("artistname")])
+  
 
   useEffect(() => {
     console.log(params.album)
     if(params.album) {
       console.log('album query is there')
 
-      dispatch(artsActions.setToggle(true))
       getAlbums(params.album)
-      dispatch(artsActions.setToggle(false))
+
 
     }}, [])
 //no dependency
@@ -88,7 +91,7 @@ if(param.get("artistname")) {
     return(
     <div>
         {!isError && content}
-        {modalState && <h1>Modal</h1>}
+        {modalState && <Modal></Modal>}
         {isError && displayError}
 
     </div>
