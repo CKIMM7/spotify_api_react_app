@@ -13,8 +13,7 @@ export default function Categories() {
 
 
   let newReleaseComponent = newReleaseArray.map((d, i) => {
-    console.log(d)
-    return <div key={i} className='category'>
+    return <div key={i} className='new-release'>
         <img src={d.images[1].url}></img>
         <p>{d.name}</p>
         <p>{d.release_date}</p>
@@ -23,18 +22,24 @@ export default function Categories() {
  })
 
  let global50Component = global50Array.map((d, i) => {
-
-    return <div key={i} className='global-50'>
+    console.log(d)
+    return <div key={i}>
+        <p>{d.added_at}</p>
     </div>
  })
 
  
   return (
-    <>
-      <div className='categories-container'>
-        <h1>Categories container</h1>
-        <div className='categories'>{newReleaseComponent}</div>
+    <div className='home-page'>
+      <div className='new-release-container'>
+        <h1>New Releases</h1>
+        <div className='new-releases'>{newReleaseComponent}</div>
       </div>
-    </>
+
+      <div className='global-50-container'>
+        <h1>New Global 50</h1>
+        <div className='global-50'>{global50Component}</div>
+      </div>
+    </div>
   )
 }
