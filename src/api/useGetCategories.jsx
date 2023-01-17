@@ -14,9 +14,6 @@ import axios from "axios"
       get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    const newReleaseArray = useSelector((state) => state.cart.newReleaseArray);
-    const global50Array = useSelector((state) => state.cart.global50Array);
-
     const getCategories = (url, type) => {
       
     axios(url, {
@@ -40,7 +37,7 @@ import axios from "axios"
         console.log('categories api call useEffect')    
         if(token) {
             //console.log('categories api call useEffect')
-            getCategories(`https://api.spotify.com/v1/browse/new-releases?limit=9`, 1)
+            getCategories(`https://api.spotify.com/v1/browse/new-releases?limit=8`, 1)
             getCategories(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF`, 2)
         }
 

@@ -23,8 +23,11 @@ export default function Categories() {
 
  let global50Component = global50Array.map((d, i) => {
     console.log(d)
-    return <div key={i}>
-        <p>{d.added_at}</p>
+    return <div key={i} className='global-50'>
+        <img src={`${d.track.album.images[1].url}`}></img>
+        <p>added at: {d.added_at}</p>
+        <p>track name: {d.track.name}</p>
+        <p>artist name: {d.track.artists[0].name}</p>
     </div>
  })
 
@@ -38,7 +41,7 @@ export default function Categories() {
 
       <div className='global-50-container'>
         <h1>New Global 50</h1>
-        <div className='global-50'>{global50Component}</div>
+        <div className='global-50s'>{global50Component}</div>
       </div>
     </div>
   )
