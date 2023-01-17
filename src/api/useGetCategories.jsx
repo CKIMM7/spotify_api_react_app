@@ -14,19 +14,23 @@ import axios from "axios"
       get: (searchParams, prop) => searchParams.get(prop),
     });
 
-    const categoryArray = useSelector((state) => state.cart.categoryArray);
+    const newReleaseArray = useSelector((state) => state.cart.newReleaseArray);
+    const global50Array = useSelector((state) => state.cart.global50Array);
 
-    const getCategories = (url) => {
-    
+    const getCategories = (url, type) => {
       
     axios(url, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
     })
-    .then (cat => {
-        console.log(cat)
+    .then(data => {
+        console.log(data)
         //dispatch(artsActions.setCategoryArray(cat.data.categories.items))
         console.log('categories api call inside')
+        if(type === 1) dispatch(artsActions.setNewReleaseArray(data.data.albums.items))
+
+        if(type === 2) dispatch(artsActions.setGlobal50Array(data.data.tracks.items))
+ 
     })
     .catch(err => {
         console.log(err)
@@ -38,8 +42,6 @@ import axios from "axios"
             //console.log('categories api call useEffect')
             getCategories(`https://api.spotify.com/v1/browse/new-releases?limit=9`, 1)
             getCategories(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF`, 2)
-
-
         }
 
     }, [token])

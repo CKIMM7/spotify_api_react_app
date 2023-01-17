@@ -8,9 +8,14 @@ const artsSlice = createSlice({
       artistImage: '',
       searchValue: '',
       textInput: '' ,
+
       searchArray: [],
       albumArray: [],
       categoryArray: [],
+
+      newReleaseArray: [],
+      global50Array: [],
+
       isLoading: false,
       isError: false,
       error: {},
@@ -19,12 +24,14 @@ const artsSlice = createSlice({
   },
   reducers: {
 
-    setToggle(state, action) {
-      state.toggle = action.payload;
+    setNewReleaseArray(state, action) {
+      console.log(action.payload)
+      state.newReleaseArray = action.payload;
     },
 
-    setModal(state, action) {
-      state.modal = action.payload;
+    setGlobal50Array(state, action) {
+      console.log(action.payload)
+      state.global50Array = action.payload;
     },
 
     setCategoryArray(state, action) {
@@ -46,6 +53,16 @@ const artsSlice = createSlice({
       state.token = action.payload;
     },
 
+
+    setToggle(state, action) {
+      state.toggle = action.payload;
+    },
+
+    setModal(state, action) {
+      state.modal = action.payload;
+    },
+
+    
     setUserRepos(state, action) {
       state.userRepos = action.payload;
     },
