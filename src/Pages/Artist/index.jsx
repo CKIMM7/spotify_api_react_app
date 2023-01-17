@@ -27,7 +27,7 @@ const Artist = (data) => {
     const albumArray = useSelector(state => state.cart.albumArray)
     const textInput = useSelector((state) => state.cart.textInput);
 
-    const modalState = useSelector((state) => state.cart.modal);
+    const modal = useSelector((state) => state.cart.modal);
     const toggle = useSelector((state) => state.cart.toggle);
 
     let artistComponents = searchArray.map((artist, i) => {
@@ -44,7 +44,7 @@ const Artist = (data) => {
                 dispatch(artsActions.setToggle(true))
                 navigate(`/artist?artistname=${textInput}&album=${artist.id}`)
  
-
+                
 
             }}>{artist.id}</button>
         </div>
@@ -63,9 +63,7 @@ const Artist = (data) => {
 
 if(param.get("artistname")) {
     // console.log(param.get("artistname"))
-    // console.log(document.referrer)
     dispatch(artsActions.setTextInput(param.get("artistname")))
-
 }
 
   return () => {
@@ -78,10 +76,10 @@ if(param.get("artistname")) {
   useEffect(() => {
     console.log(params.album)
     if(params.album) {
+
       console.log('album query is there')
-
       getAlbums(params.album)
-
+      dispatch(artsActions.setModal(true))
 
     }}, [])
 //no dependency
@@ -92,7 +90,7 @@ if(param.get("artistname")) {
     return(
     <div>
         {!isError && content}
-        {modalState && <Modal></Modal>}
+        {modal && <Modal></Modal>}
         {isError && displayError}
 
     </div>

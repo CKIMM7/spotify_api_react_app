@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { artsActions } from '../../store/store'
 
@@ -10,11 +10,18 @@ export default function Modal() {
 
   const closeModalHandler = () => {
     dispatch(artsActions.setModal(false))
-    //dispatch(artsActions.setAlbumArray([]))
     console.log('close')
   }
 
-  console.log(albumArray)
+  useEffect(() => {
+
+    return () => {
+      console.log('modal closed')
+      dispatch(artsActions.setAlbumArray([]))
+    }
+    
+  }, [])
+  
 
   let artistComponents = albumArray.map((artist, i) => {
 

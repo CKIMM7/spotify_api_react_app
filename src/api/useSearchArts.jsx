@@ -76,7 +76,6 @@ const useSearchArts = (nothing) => {
             }}, 1000);
 
         return () => { 
-            console.log('comp unmount')
             clearTimeout(timeOutId);}    
 
     }, [textInput])

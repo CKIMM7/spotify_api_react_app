@@ -1,8 +1,9 @@
 import React, { useEffect } from "react"
 import { Routes, Route } from 'react-router-dom'
+
 import useSearchArts from "./api/useSearchArts";
 import useGetToken from "./api/useGetToken";
-import useGetAlbums from "./api/useGetAlbums";
+import useGetCategories from "./api/useGetCategories";
 
 import Header from "./Pages/layouts/Header"
 import Artist from "./Pages/Artist";
@@ -10,10 +11,12 @@ import Artist from "./Pages/Artist";
 import { useSearchParams } from 'react-router-dom';
 
 
+
 function App() {
   const [searchParams] = useSearchParams();
-  useGetToken()
+  useGetToken();
   useSearchArts();
+  useGetCategories();
 
   
   console.log(searchParams.get("artistname"))

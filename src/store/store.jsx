@@ -10,6 +10,7 @@ const artsSlice = createSlice({
       textInput: '' ,
       searchArray: [],
       albumArray: [],
+      categoryArray: [],
       isLoading: false,
       isError: false,
       error: {},
@@ -27,17 +28,26 @@ const artsSlice = createSlice({
       console.log(action.payload)
       state.modal = action.payload;
     },
+
+    setCategoryArray(state, action) {
+      console.log(action.payload)
+      state.categoryArray = action.payload;
+    },
     
     setAlbumArray(state, action) {
       console.log(action.payload)
       state.albumArray = action.payload;
     },
 
+    setSearchArray(state, action) {
+      console.log(action.payload)
+      state.searchArray = action.payload
+    },
+
     setToken(state, action) {
       console.log(action.payload)
       state.token = action.payload;
     },
-
 
     setUserRepos(state, action) {
       state.userRepos = action.payload;
@@ -64,14 +74,7 @@ const artsSlice = createSlice({
   
     setSearchValue(state, action) {
       state.searchValue = action.payload
-    },
-
-    setSearchArray(state, action) {
-      console.log(action.payload)
-      state.searchArray = action.payload
-    },
-
-
+    }
 
   },
 });
