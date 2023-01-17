@@ -8,9 +8,6 @@ import useGetCategories from "./api/useGetCategories";
 import Header from "./Pages/layouts/Header"
 import Artist from "./Pages/Artist";
 
-import { useSearchParams } from 'react-router-dom';
-
-
 
 function App() {
   useGetToken();

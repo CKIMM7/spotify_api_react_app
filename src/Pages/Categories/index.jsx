@@ -8,30 +8,33 @@ export default function Categories() {
   const categoryArray = useSelector(state => state.cart.categoryArray)
   const token = useSelector((state) => state.cart.token);
 
-  const getCategory = (url) => {
-    
-    axios(url, {
-        method: 'GET',
-        headers: { 'Authorization' : 'Bearer ' + token}
-    })
-    .then (cat => {
-        console.log(cat)
-        console.log('categories api call inside')
-    })
-    .catch(err => {
-        console.log(err)
-    })}
+  const newReleaseArray = useSelector((state) => state.cart.newReleaseArray);
+  const global50Array = useSelector((state) => state.cart.global50Array);
 
-  let categoryComponent = categoryArray.map((cat, i) => {
 
+  let newReleaseComponent = newReleaseArray.map((d, i) => {
+    console.log(d)
     return <div key={i} className='category'>
-        <img src={`${cat.icons[0].url}`}></img>
-        <button onClick={() => {getCategory(cat.href)}}>{cat.name}</button>
+        <img src={d.images[1].url}></img>
+        <p>{d.name}</p>
+        <p>{d.release_date}</p>
+        <p>{d.total_tracks}</p>
+    </div>
+ })
+
+ let global50Component = global50Array.map((d, i) => {
+
+    return <div key={i} className='global-50'>
     </div>
  })
 
  
   return (
-    <div className='categories'>{categoryComponent}</div>
+    <>
+      <div className='categories-container'>
+        <h1>Categories container</h1>
+        <div className='categories'>{newReleaseComponent}</div>
+      </div>
+    </>
   )
 }
