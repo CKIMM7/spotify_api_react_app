@@ -30,7 +30,7 @@ import axios from "axios"
           dispatch(artsActions.setAlbumArray(albums.data.items))
 
 
-          console.log('how many navigate')
+          console.log('album api call')
 
         })
         .catch(err => {

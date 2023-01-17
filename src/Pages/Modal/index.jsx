@@ -4,7 +4,9 @@ import { artsActions } from '../../store/store'
 
 export default function Modal() {
   
-  const dispatch = useDispatch()
+  const albumArray = useSelector(state => state.cart.albumArray)
+  const dispatch = useDispatch()  
+
 
   const closeModalHandler = () => {
     dispatch(artsActions.setModal(false))
@@ -12,11 +14,24 @@ export default function Modal() {
     console.log('close')
   }
 
+  console.log(albumArray)
+
+  let artistComponents = albumArray.map((artist, i) => {
+
+    return <div key={i} >
+      <img src={`${artist.images[1].url}`}></img>
+      <p>{artist.name}</p>
+      <p>{artist.release_date}</p>
+      <p>{artist.total_tracks}</p>
+    </div>
+ })
+
+
   return (
     <div id="modal" className="modal">
     <div className="modal-content">
       <span onClick={()=> closeModalHandler()} className="close">&times;</span>
-      <p>Please wait for the server to process the request</p>
+      {artistComponents}
     </div>
   </div>
   )

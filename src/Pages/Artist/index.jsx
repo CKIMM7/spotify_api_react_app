@@ -37,10 +37,11 @@ const Artist = (data) => {
             <h2>{artist.name}</h2>
             <button onClick={
               () => {
-                dispatch(artsActions.setToggle(true))
+                
                 dispatch(artsActions.setModal(true))
                 getAlbums(artist.id)
                 dispatch(artsActions.setToggle(false))
+                dispatch(artsActions.setToggle(true))
                 navigate(`/artist?artistname=${textInput}&album=${artist.id}`)
  
 
