@@ -18,7 +18,7 @@ import axios from "axios"
 
     const getCategories = () => {
     
-    let url = `https://api.spotify.com/v1/browse/categories?limit=9`
+    let url = `https://api.spotify.com/v1/browse/categories?limit=12`
       
     axios(url, {
         method: 'GET',

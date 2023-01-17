@@ -6,17 +6,17 @@ export default function Categories() {
   
   const categoryArray = useSelector(state => state.cart.categoryArray)
 
-  
 
   let categoryComponent = categoryArray.map((cat, i) => {
 
-    return <div key={i} >
-    
+    return <div key={i} className='category'>
+        <img src={`${cat.icons[0].url}`}></img>
+        <button onClick={() => {console.log('top categories')}}>{cat.name}</button>
     </div>
  })
 
 
   return (
-    <div>categories</div>
+    <div className='categories'>{categoryComponent}</div>
   )
 }
