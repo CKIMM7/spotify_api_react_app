@@ -20,17 +20,14 @@ const artsSlice = createSlice({
   reducers: {
 
     setToggle(state, action) {
-      console.log(action.payload)
       state.toggle = action.payload;
     },
 
     setModal(state, action) {
-      console.log(action.payload)
       state.modal = action.payload;
     },
 
     setCategoryArray(state, action) {
-      console.log(action.payload)
       state.categoryArray = action.payload;
     },
     
@@ -45,7 +42,6 @@ const artsSlice = createSlice({
     },
 
     setToken(state, action) {
-      console.log(action.payload)
       state.token = action.payload;
     },
 

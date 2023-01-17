@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoadingSpinner from "../../LoadingSpinner";
 import SearchForm from "../../Forms";
 
+import Categories from "../../Categories";
+
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -35,7 +37,7 @@ const Header = () => {
         <nav id='nav'>  
           <SearchForm />
         </nav> 
-        {!textInput && !isLoading && <img src='https://student-server-bucket.s3.amazonaws.com/github_logo.png' /> }
+        {!textInput && !isLoading && <Categories></Categories> }
         {isLoading && textInput && <LoadingSpinner />}
           <Outlet></Outlet>
     </>
