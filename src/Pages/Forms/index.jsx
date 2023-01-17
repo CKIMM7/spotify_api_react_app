@@ -24,7 +24,7 @@ export default function SearchForm() {
   return (
       <form onSubmit={handleSumbit} id="searchForm">
               {/* <label htmlFor="form-search">Search For Artists</label> */}
-              <input name={searchValue} type='text' value={textInput} onChange={handleChange} id="form-search" placeholder='Type in username'/>
+              <input name={searchValue} type='text' value={textInput} onChange={handleChange} id="form-search" placeholder='Search For Artist'/>
 
               {/* <input type='submit' id='button'/> */}
           </form>

@@ -16,17 +16,16 @@ import axios from "axios"
 
     const categoryArray = useSelector((state) => state.cart.categoryArray);
 
-    const getCategories = () => {
+    const getCategories = (url) => {
     
-    let url = `https://api.spotify.com/v1/browse/categories?limit=12`
       
     axios(url, {
         method: 'GET',
         headers: { 'Authorization' : 'Bearer ' + token}
     })
     .then (cat => {
-        console.log(cat.data.categories.items)
-        dispatch(artsActions.setCategoryArray(cat.data.categories.items))
+        console.log(cat)
+        //dispatch(artsActions.setCategoryArray(cat.data.categories.items))
         console.log('categories api call inside')
     })
     .catch(err => {
@@ -34,13 +33,16 @@ import axios from "axios"
     })}
 
     useEffect(() => {
-        
-        if(textInput === '' && categoryArray.length === 0) {
-            console.log('categories api call useEffect')
-            getCategories()
+        console.log('categories api call useEffect')    
+        if(token) {
+            //console.log('categories api call useEffect')
+            getCategories(`https://api.spotify.com/v1/browse/new-releases?limit=9`, 1)
+            getCategories(`https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF`, 2)
+
+
         }
 
-    }, [textInput])
+    }, [token])
 
 
     return { getCategories };

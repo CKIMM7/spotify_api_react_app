@@ -42,6 +42,7 @@ const artsSlice = createSlice({
     },
 
     setToken(state, action) {
+      console.log(action.payload)
       state.token = action.payload;
     },
 

@@ -13,13 +13,10 @@ import { useSearchParams } from 'react-router-dom';
 
 
 function App() {
-  const [searchParams] = useSearchParams();
   useGetToken();
   useSearchArts();
   useGetCategories();
 
-  
-  console.log(searchParams.get("artistname"))
 
 return (
   <Routes>
