@@ -44,8 +44,7 @@ import axios from "axios"
     useEffect(() => {
       console.log(toggle)
       if(toggle) getAlbums()
-      
-      getAlbums()
+    
 
     }, [toggle])
 

@@ -76,14 +76,13 @@ if(param.get("artistname")) {
       console.log('album query is there')
 
       dispatch(artsActions.setToggle(true))
-      getAlbums(params.album, params.artistname)
+      getAlbums(params.album)
       dispatch(artsActions.setToggle(false))
 
-      
-    }
-
-    
-  }, [param.get("album")])
+    }}, [])
+//no dependency
+//works only on first render
+//it will not run again 
 
 
     return(
