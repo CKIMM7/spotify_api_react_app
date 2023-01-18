@@ -10,6 +10,7 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -145,6 +146,12 @@ display: table;
 margin: 0 auto;
 }
 
+.artist {
+  text-align: center;
+  margin: 15px;
+  border: dashed 3px green;
+}
+
 #modal {
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
@@ -179,6 +186,7 @@ z-index: 9999; /* Sit on top */
 
 .modal-content button {
   width: 100%;
+
 } 
 
 .modal-content .modal-album {

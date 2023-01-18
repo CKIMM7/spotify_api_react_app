@@ -32,7 +32,7 @@ const Artist = (data) => {
 
     let artistComponents = searchArray.map((artist, i) => {
 
-        return <div key={i} >
+        return <div key={i} className='artist'>
         <img src={`${artist.images[1].url}`}></img>
             <h2>{artist.name}</h2>
             <button onClick={
@@ -46,12 +46,13 @@ const Artist = (data) => {
  
                 
 
-            }}>{artist.id}</button>
+            }}>View Alumbs</button>
         </div>
      })
 
-    let content = searchArray.length === 0 && textInput && !isLoading ? <h1>no repos for this user</h1> :  artistComponents
-
+    let content = searchArray.length === 0 && textInput && !isLoading ? <h1>no repos for this user</h1> :  <div className="artist-content">{artistComponents}</div>
+ 
+    
     let displayError =  <>
     <h1>error message:</h1>
     <p>{error.message}</p>  
