@@ -22,7 +22,6 @@ export default function Categories() {
  })
 
  let global50Component = global50Array.map((d, i) => {
-    console.log(d)
     return <div key={i} className='global-50'>
         <img src={`${d.track.album.images[1].url}`}></img>
         <p>added at: {d.added_at}</p>

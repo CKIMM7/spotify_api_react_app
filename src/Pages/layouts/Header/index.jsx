@@ -30,10 +30,14 @@ const Header = () => {
 
     }, [location.pathname])
 
+    const homeHandler = () => {
+      navigate('/')
+    }
+
 
     return(
       <>
-        <div className='title'>
+        <div className='title' onClick={()=> { homeHandler() }}>
           <img src='../../../../public/img/Spotify_icon.svg.png'></img>
           <h1>SPOTIFY REACT APP</h1> 
         </div>

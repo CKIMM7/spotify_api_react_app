@@ -47,7 +47,7 @@ body {
   border: 3px solid white;
   width: 100%;
   text-align: center;
-  background-color: black;
+  background-color: green
 }
 
 
@@ -149,7 +149,11 @@ margin: 0 auto;
 .artist {
   text-align: center;
   margin: 15px;
-  border: dashed 3px green;
+  border: dashed 5px #1db954
+}
+
+.artist img {
+  width: 100%;
 }
 
 #modal {
@@ -197,6 +201,7 @@ text-align: center;
 .new-release-container {
 margin-top: 50px;
 text-align: center;
+color: green;
 }
 
 .new-releases {
@@ -217,7 +222,15 @@ flex-direction: column;
 text-align: center;
 width: 20%;
 min-height: 200px;
+max-height: 300px;
+
 margin: 15px;
+border: dashed 5px green;
+}
+
+.new-release p {
+font-size: small;
+color: black
 }
   
 .new-release img {
@@ -227,6 +240,7 @@ height: 200px;
 .global-50-container {
 top: 150px;
 text-align: center;
+color: green; 
 }
 
 .global-50s {
@@ -245,8 +259,16 @@ flex-direction: column;
 text-align: center;
 width: 20%;
 min-height: 200px;
+max-height: 300px;
 margin: 15px;
+border: dashed 5px green;
 }
+
+.global-50 p {
+font-size: small;
+color: black
+}
+
   
 .global-50 img {
 height: 200px;
