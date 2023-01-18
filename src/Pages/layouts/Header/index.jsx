@@ -42,14 +42,14 @@ const Header = () => {
     return(
       <>
         <div className='title'>
-          <img src='../../../../public/img/Spotify_icon.svg.png'
+          <img src='https://student-server-bucket.s3.amazonaws.com/Spotify_icon.svg.png'
           onClick={()=> { homeHandler() }}
           ></img>
           <h1
           onClick={()=> { homeHandler() }}>SPOTIFY REACT APP</h1>
           <img
         onClick={()=> { togleThemeHandler() }} 
-        src='../../../../public/img/dark_theme.png'
+        src='https://student-server-bucket.s3.amazonaws.com/dark_theme.png'
         id='dark-theme'
         >
         </img>
