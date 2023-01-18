@@ -15,18 +15,18 @@ export default function Categories() {
   let newReleaseComponent = newReleaseArray.map((d, i) => {
     return <div key={i} className='new-release'>
         <img src={d.images[1].url}></img>
-        <p>{d.name}</p>
-        <p>{d.release_date}</p>
-        <p>{d.total_tracks}</p>
+        <p className='name'>Album Name: {d.name}</p>
+        <p>Release Date: {d.release_date}</p>
+        <p>Total Tracks: {d.total_tracks}</p>
     </div>
  })
 
  let global50Component = global50Array.map((d, i) => {
     return <div key={i} className='global-50'>
         <img src={`${d.track.album.images[1].url}`}></img>
-        <p>added at: {d.added_at}</p>
-        <p>track name: {d.track.name}</p>
-        <p>artist name: {d.track.artists[0].name}</p>
+        <p className='name'>Track Name: {d.track.name}</p>
+        <p>Last Updated: {d.added_at}</p>
+        <p>Artist Name: {d.track.artists[0].name}</p>
     </div>
  })
 
