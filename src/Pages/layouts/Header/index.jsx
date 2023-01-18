@@ -41,11 +41,19 @@ const Header = () => {
 
     return(
       <>
-        <div className='title' onClick={()=> { homeHandler() }}>
-          <img src='../../../../public/img/Spotify_icon.svg.png'></img>
-          <h1>SPOTIFY REACT APP</h1>  
+        <div className='title'>
+          <img src='../../../../public/img/Spotify_icon.svg.png'
+          onClick={()=> { homeHandler() }}
+          ></img>
+          <h1
+          onClick={()=> { homeHandler() }}>SPOTIFY REACT APP</h1>
+          <img
+        onClick={()=> { togleThemeHandler() }} 
+        src='../../../../public/img/dark_theme.png'
+        id='dark-theme'
+        >
+        </img>
         </div>
-        <h1 onClick={()=> { togleThemeHandler() }}>DRAK THEME</h1> 
         <div className='nav-search'>    
           <SearchForm />
         </div> 
