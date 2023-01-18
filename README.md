@@ -18,6 +18,11 @@
 
 # Wins & Challenges
 ## wins
+- routing
 
 ## challenges
+- routing
 
+## future features
+- user personalization with user api end points
+- infinite scroll
