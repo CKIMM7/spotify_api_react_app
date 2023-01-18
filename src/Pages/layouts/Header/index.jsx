@@ -31,15 +31,22 @@ const Header = () => {
     }, [location.pathname])
 
 
-    return( 
-        <>
-        <h1>SPOTIFY REACT APP</h1>
-        <nav id='nav'>  
+    return(
+      <>
+        <div className='title'>
+          <img src='../../../../public/img/Spotify_icon.svg.png'></img>
+          <h1>SPOTIFY REACT APP</h1> 
+        </div>
+        <div className='nav-search'>    
           <SearchForm />
-        </nav> 
+        </div> 
+
+
+
         {!textInput && !isLoading && <Categories></Categories> }
         {isLoading && textInput && <LoadingSpinner />}
           <Outlet></Outlet>
+
     </>
     )
 }

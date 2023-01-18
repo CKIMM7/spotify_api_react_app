@@ -25,11 +25,11 @@ export default function Modal() {
 
   let artistComponents = albumArray.map((artist, i) => {
 
-    return <div key={i} >
+   return <div key={i} className="modal-album">
       <img src={`${artist.images[1].url}`}></img>
-      <p>{artist.name}</p>
-      <p>{artist.release_date}</p>
-      <p>{artist.total_tracks}</p>
+      <p>Artist Name: {artist.name}</p>
+      <p>Release Date: {artist.release_date}</p>
+      <p>Total Tracks: {artist.total_tracks}</p>
     </div>
  })
 
@@ -37,7 +37,7 @@ export default function Modal() {
   return (
     <div id="modal" className="modal">
     <div className="modal-content">
-      <span onClick={()=> closeModalHandler()} className="close">&times;</span>
+      <button onClick={()=> closeModalHandler()} className="close">Close Albums</button>
       {artistComponents}
     </div>
   </div>
