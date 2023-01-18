@@ -35,7 +35,7 @@ export default function Modal() {
 
 
   return (
-    <div id="modal" className="modal">
+    <div id="modal" className="modal" onClick={()=> closeModalHandler()}>
     <div className="modal-content">
       <button onClick={()=> closeModalHandler()} className="close">Close Albums</button>
       {artistComponents}

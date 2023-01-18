@@ -34,13 +34,18 @@ const Header = () => {
       navigate('/')
     }
 
+    const togleThemeHandler = () => {
+      document.body.classList.toggle('dark-theme')
+    }
+
 
     return(
       <>
         <div className='title' onClick={()=> { homeHandler() }}>
           <img src='../../../../public/img/Spotify_icon.svg.png'></img>
-          <h1>SPOTIFY REACT APP</h1> 
+          <h1>SPOTIFY REACT APP</h1>  
         </div>
+        <h1 onClick={()=> { togleThemeHandler() }}>DRAK THEME</h1> 
         <div className='nav-search'>    
           <SearchForm />
         </div> 
